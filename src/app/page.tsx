@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { NewsCard, ProjectCard, SectionHeading } from "@/components/ui";
 import { articles, countries, organs, projects } from "@/data/site";
 import { createPageMetadata } from "@/lib/metadata";
@@ -22,14 +22,14 @@ export default function HomePage() {
     <section className="countries-strip section">
       <div className="site-container">
         <h2>Seven Nations. One Agreement.</h2>
-        <div className="country-flags">{countries.map((country) => <article key={country.name}><div><Image src={country.flag} alt={`${country.name} flag`} fill sizes="6rem" /></div><h3>{country.name === "D.R. Congo" ? "D. R. C." : country.name}</h3></article>)}</div>
+        <div className="country-flags">{countries.map((country) => <Link href={`/countries/${country.slug}`} key={country.name}><div><Image src={country.flag} alt={`${country.name} flag`} fill sizes="6rem" /></div><h3>{country.name === "D.R. Congo" ? "D. R. C." : country.name}</h3></Link>)}</div>
       </div>
     </section>
 
     <section className="section home-news-section">
       <div className="site-container home-news-grid">
         <aside className="home-side-stack">
-          <article className="executive-card"><div><Image src="/images/leader-flory.png" alt="Adv. Okandju Okonge Flory, Executive Secretary" fill sizes="20rem" /></div><h2>Adv. Okandju Okonge Flory <span>Executive Secretary</span></h2></article>
+          <article className="executive-card"><div><Image src="/images/leader-flory.png" alt="Adv. Okandju Okonge Flory, Executive Secretary" fill sizes="20rem" /></div><h2>Adv. Okandju Okonge Flory <span>Executive Secretary</span></h2><Link className="text-link" href="/about/executive-secretary">Executive Secretary&apos;s Message <ArrowRight aria-hidden size={15} /></Link></article>
           <article className="tender-card"><p className="eyebrow">Tenders</p><hr /><span className="badge badge-open">Open</span><small>Ref. CCTTFA/PR/2026/04</small><h3>Provision of Medical Insurance Service Provider</h3><p>Closes Nov 30, 2026</p><Link className="text-link" href="/tenders">View all tenders <ArrowRight aria-hidden size={15} /></Link><hr /><p className="eyebrow">Vacancies</p><p>No active vacancies at the moment</p></article>
         </aside>
         <div className="home-article-grid">{articles.slice(0, 6).map((article) => <NewsCard article={article} key={article.title} />)}<Link className="button home-news-button" href="/news">View more news</Link></div>
@@ -48,7 +48,7 @@ export default function HomePage() {
       <div className="governance-overlay" />
       <div className="site-container governance-content">
         <SectionHeading title="Four Organs. One Mandate" description="CCTTFA delivers its mandate through four organs that coordinate policy, stakeholder consultation and implementation." align="center" />
-        <div className="organs-grid">{organs.map((organ, index) => <article key={organ.title}><span>{index + 1}</span><div><h3>{organ.title}</h3><p>{organ.text}</p></div></article>)}</div>
+        <div className="institutional-flow home-institutional-flow">{organs.map((organ, index) => <div className="institutional-flow-step" key={organ.slug}><Link href={`/about/organs/${organ.slug}`}><span>{index + 1}</span><div><h3>{organ.title}</h3><p>{organ.text}</p><small>Explore organ <ArrowRight aria-hidden size={14} /></small></div></Link>{index < organs.length - 1 && <ArrowDown className="institutional-flow-arrow" aria-hidden size={24} />}</div>)}</div>
       </div>
     </section>
 

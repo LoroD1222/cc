@@ -32,7 +32,7 @@ const icons = { Railway: TrainFront, Road: Truck, Port: Anchor };
 
 export function ProjectCard({ project }: { project: Project }) {
   const Icon = icons[project.type];
-  return <article className="project-card"><div className="card-image"><Image src={project.image} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" /><span className={`status status-${project.status.toLowerCase().replaceAll(" ", "-")}`}>{project.status}</span><span className="project-icon"><Icon aria-hidden size={22} /></span></div><div className="card-body"><h3>{project.title}</h3><p>{project.description}</p><dl className="project-meta"><div><dt>Countries</dt><dd>{project.countries}</dd></div><div><dt>Est. cost</dt><dd>{project.cost}</dd></div></dl></div></article>;
+  return <article className="project-card"><div className="card-image"><Image src={project.image} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" /><span className={`status status-${project.status.toLowerCase().replaceAll(" ", "-")}`}>{project.status}</span><span className="project-icon"><Icon aria-hidden size={22} /></span></div><div className="card-body"><h3>{project.title}</h3><p>{project.description}</p><dl className="project-meta"><div><dt>Countries</dt><dd>{project.countries}</dd></div><div><dt>Est. cost</dt><dd>{project.cost}</dd></div></dl><Link className="text-link" href={`/projects/${project.slug}`}>View project <ArrowRight aria-hidden size={16} /></Link></div></article>;
 }
 
 export function PerformancePanel({ four = false }: { four?: boolean }) {
