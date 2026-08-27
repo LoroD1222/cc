@@ -240,7 +240,7 @@ h3 { font-size: 1.25rem; }
 .route-mission { position: relative; min-height: 39rem; overflow: hidden; color: #fff; background: var(--deep); }
 .route-mission > img { object-fit: cover; object-position: center; }
 .route-mission-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 64 86 / 92%) 0%, rgb(13 64 86 / 35%) 55%, transparent 100%); }
-.route-mission-copy { position: relative; z-index: 1; padding-top: 12rem; padding-bottom: 20px; }
+.route-mission-copy { position: relative; z-index: 1; padding-top: 12rem; padding-bottom: 50px; }
 .route-mission h2 { max-width: 34rem; margin-bottom: 1.25rem; font-size: clamp(2.5rem, 4vw, 3.6rem); }
 .route-mission p { max-width: 30rem; color: rgb(255 255 255 / 75%); }
 .route-mission-copy .button { margin-top: 20px; }
