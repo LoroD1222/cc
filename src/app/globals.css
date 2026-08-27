@@ -243,6 +243,7 @@ h3 { font-size: 1.25rem; }
 .route-mission-copy { position: relative; z-index: 1; padding-top: 12rem; }
 .route-mission h2 { max-width: 34rem; margin-bottom: 1.25rem; font-size: clamp(2.5rem, 4vw, 3.6rem); }
 .route-mission p { max-width: 30rem; color: rgb(255 255 255 / 75%); }
+.route-mission-copy .button { margin-top: 20px; }
 .home-route-gallery { padding-bottom: var(--section); }
 .route-gallery-grid { display: grid; grid-template-columns: 1fr 1.35fr 1fr; gap: 0; transform: translateY(-6rem); }
 .route-gallery-grid > div { position: relative; height: 20rem; overflow: hidden; border: 1px solid rgb(255 255 255 / 45%); border-radius: 2.5rem; box-shadow: var(--shadow-md); }
@@ -262,9 +263,9 @@ h3 { font-size: 1.25rem; }
 .content-stack { display: grid; gap: 4.5rem; min-width: 0; }
 .content-stack .section-heading { margin-bottom: 2rem; }
 .lead-copy { color: var(--body); }
-.country-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-.country-card { min-height: 9.5rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius-sm); }
-.country-card h3 { display: flex; align-items: center; gap: 0.65rem; font-size: 1rem; }
+.country-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1rem; }
+.country-card { min-height: 0; padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.country-card h3 { display: flex; align-items: center; gap: 0.65rem; margin: 0; padding-bottom: 15px; font-size: 1rem; }
 .country-card h3 span { position: relative; width: 1.5rem; height: 1.25rem; }
 .country-card img { object-fit: contain; }
 .country-card p { margin: 0; color: var(--body); font-size: 0.75rem; line-height: 1.5; }
@@ -418,7 +419,7 @@ h3 { font-size: 1.25rem; }
 .checkbox-field { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; }
 .checkbox-field a { margin-left: auto; color: var(--cyan); font-weight: 700; }
 .institution-strip { padding-block: 3rem; border-top: 1px solid var(--border); background: var(--muted); }
-.institution-strip p { text-align: center; color: var(--body); font-size: 0.7rem; font-weight: 750; text-transform: uppercase; }
+.institution-strip p { padding-bottom: 20px; text-align: center; color: var(--body); font-size: 0.7rem; font-weight: 750; text-transform: uppercase; }
 .institution-strip .site-container > div { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; }
 .institution-strip span { display: grid; place-items: center; min-height: 3.5rem; padding: 0.5rem; border: 1px solid var(--border); border-radius: 0.35rem; background: #fff; font-size: 0.7rem; text-align: center; }
 

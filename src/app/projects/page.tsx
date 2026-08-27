@@ -1,23 +1,15 @@
-import type { CSSProperties } from "react";
-import Image from "next/image";
-import { Check, TrainFront } from "lucide-react";
-import { Field, PageHero, ProjectCard, SectionHeading, SidebarNav } from "@/components/ui";
+import { PageHero, SidebarNav } from "@/components/ui";
+import { ProjectExplorer } from "@/components/project-explorer";
 import { projects } from "@/data/site";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({ title: "Regional Projects", description: "Explore current and planned regional infrastructure projects across the Central Corridor partner states.", path: "/projects", image: "/images/projects-hero.png" });
 
 export default function ProjectsPage() {
-  const navigation = ["Filter & Search", "Key Project Spotlight", "Project Directory", "Project Pipeline", "Submit Proposal"].map((label) => ({ label, href: `#${label.toLowerCase().replaceAll(" ", "-")}` }));
-  const stages = ["Concept & Brief", "Feasibility Study", "Design & Procurement", "Under Construction", "Operational"];
+  const navigation = ["Key Project Spotlight", "Filter & Search", "Project Directory", "Project Pipeline", "Submit Proposal"].map((label) => ({ label, href: `#${label.toLowerCase().replaceAll(" ", "-")}` }));
+
   return <>
     <PageHero eyebrow="CCTTFA Portfolio" title="Transforming Regional Connectivity" description="Managing regional infrastructure capital investments across partner states." image="/images/projects-hero.png" position="center 55%" />
-    <section className="section"><div className="site-container sidebar-layout"><SidebarNav items={navigation} /><div className="content-stack">
-      <section id="filter-&-search" className="filters"><strong>Filter by:</strong><label>Status: <select defaultValue="all"><option value="all">All</option><option>In Progress</option><option>Planned</option></select></label><label>Country: <select defaultValue="all"><option value="all">All (7)</option>{["Tanzania", "Rwanda", "Burundi", "DR Congo"].map((x) => <option key={x}>{x}</option>)}</select></label><label>Type: <select defaultValue="all"><option value="all">All Infrastructure</option><option>Railway</option><option>Road</option><option>Port</option></select></label><span className="push">7 projects found</span></section>
-      <section id="key-project-spotlight"><SectionHeading eyebrow="Featured" title="Key Project Spotlight" /><article className="spotlight-card"><div><Image src="/images/project-spotlight.png" alt="Dar es Salaam to Kigali railway delegation" fill sizes="35vw" /></div><div><span className="status-inline">In Progress</span><h2>Dar es Salaam – Isaka – Kigali Railway (SGR)</h2><p>A flagship railway project spanning Tanzania and Rwanda, designed to transform freight and passenger connectivity along the Central Corridor.</p><dl><div><dt>Countries</dt><dd>Tanzania, Rwanda</dd></div><div><dt>Est. cost</dt><dd>USD 120,000 *</dd></div><div><dt>Type</dt><dd>Standard Gauge</dd></div></dl></div></article></section>
-      <section id="project-directory"><SectionHeading title="Project Directory" description="* Estimated costs are indicative and subject to verification by the contracting authority." /><div className="card-grid">{projects.map((project) => <ProjectCard project={project} key={project.title} />)}</div></section>
-      <section id="project-pipeline" className="pipeline-section"><SectionHeading title="Projects Pipeline" align="center" /><div className="pipeline-head">{stages.map((stage) => <span key={stage}>{stage}</span>)}</div><div className="pipeline-rows">{projects.map((project, index) => <article key={project.title} style={{ "--stage": Math.min(index + 1, 5) } as CSSProperties}><span>{project.title}<TrainFront aria-hidden size={13} /></span></article>)}</div></section>
-      <section id="submit-proposal" className="proposal-panel"><div><h2>Submit a Project Proposal</h2><p>Have a project idea that could benefit the Central Corridor? Submit your proposal for review by the Secretariat and member states.</p><ul><li><Check aria-hidden size={15} /> Open to member state agencies and development partners</li><li><Check aria-hidden size={15} /> Proposals reviewed quarterly by the Technical Committee</li><li><Check aria-hidden size={15} /> Successful proposals enter the project pipeline</li></ul></div><form aria-label="Project proposal"><Field label="Organisation Name" name="organisation" placeholder="e.g. Ministry of Transport, Tanzania" /><Field label="Contact Email" name="email" type="email" placeholder="email@example.com" /><Field label="Project Title" name="title" placeholder="Brief title for your proposed project" /><label className="field"><span>Infrastructure Type</span><select name="type"><option>Select type...</option><option>Railway</option><option>Road</option><option>Port</option></select></label><button className="button" type="button">Submit Proposal</button></form></section>
-    </div></div></section>
+    <section className="section"><div className="site-container sidebar-layout"><SidebarNav items={navigation} /><div className="content-stack"><ProjectExplorer projects={projects} /></div></div></section>
   </>;
 }
