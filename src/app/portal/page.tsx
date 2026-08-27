@@ -1,0 +1,24 @@
+import { BarChart3, ClipboardList, LockKeyhole, Megaphone, Send, Waypoints } from "lucide-react";
+import { DemoSubmitButton } from "@/components/interactive";
+import { Field, PageHero, SectionHeading, TextAreaField } from "@/components/ui";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({ title: "Stakeholder Portal", description: "Access Central Corridor digital facilitation tools, rapid diagnostics, partner services and institutional connections.", path: "/portal", image: "/images/portal-hero.png" });
+
+const services = [
+  { icon: ClipboardList, title: "Transport Policy & Planning", text: "Coordinating national transport policies, harmonizing regulatory frameworks, and strategic corridor-wide planning." },
+  { icon: Waypoints, title: "Infrastructure Development", text: "Planning, design review, and progress monitoring of railways, dry ports, roads, and border facilities." },
+  { icon: BarChart3, title: "Logistics & Transport Facilitation", text: "Access official bulletins on transit metrics, border infrastructure performance and road tolls." },
+  { icon: LockKeyhole, title: "Customs & Trade Facilitation", text: "Secure, credentialed gateway for logistics firms, ministries, and customs officers." },
+  { icon: Megaphone, title: "Communication & Advocacy", text: "Public information campaigns, stakeholder engagement, and media coordination." },
+];
+
+export default function PortalPage() {
+  return <>
+    <PageHero eyebrow="Community & Logistics Integration" title="Central Corridor Stakeholder Portal" description="Collaborate seamlessly across the seven transit nations. Access live custom telemetry, query transit single windows, and request customized transport reports." image="/images/portal-hero.png" position="center 55%" />
+    <section className="section"><div className="site-container"><SectionHeading eyebrow="Digital Services" title="Corridor Facilitation Tools" /><div className="card-grid five service-grid">{services.map(({ icon: Icon, title, text }) => <article className="service-card" key={title}><span><Icon aria-hidden size={22} /></span><h3>{title}</h3><p>{text}</p><button type="button">Learn more →</button></article>)}</div></div></section>
+    <section className="section section-muted"><div className="site-container diagnostics-grid"><div><SectionHeading eyebrow="Interactive Channels" title="Rapid Diagnostics & Inquiries" description="Our automated feedback portal and AI-driven corridor assistant provide direct channels to voice transit concerns and retrieve logistics information." /><form className="form-card query-form"><h3>Submit Quick Corridor Query</h3><div className="form-grid"><label className="field"><span>Focal Category</span><select name="category"><option>Port of Dar es Salaam Operations</option><option>Border Operations</option></select></label><Field label="Your Location / Border Post" name="location" placeholder="Mutukula Border Post" /><TextAreaField label="Query details" name="query" placeholder="Enter brief description of delay or issue..." /></div><DemoSubmitButton>Send Query</DemoSubmitButton></form></div><aside className="assistant-card" aria-label="Static Corridor Assistant preview"><header><span /> <strong>Corridor Assistant</strong><small>Live AI Help</small></header><div className="assistant-messages"><p>Hello! Ask me about current port dwell times or border custom delays.</p><p>What is the average transit speed today?</p></div><div className="assistant-input"><span>Type a query (e.g. “Mutukula delays?”)...</span><Send aria-hidden size={18} /></div></aside></div></section>
+    <section className="section" id="login"><div className="site-container login-grid"><div><SectionHeading eyebrow="Partner Login" title="Access Database" description="Log in to access national coordinator admin dashboards, bulk document repositories, border and customs APIs, and internal committee files." /><a className="text-link" href="mailto:ttfa@centralcorridor-ttfa.org">Request Credentials or Portal Onboarding →</a></div><form className="form-card login-card"><h3>Partner Sign In</h3><p>Enter credentials issued by CCTTFA Secretariat</p><Field label="Work Email Address" name="email" type="email" placeholder="name@organization.go.tz" /><Field label="Password" name="password" type="password" placeholder="Enter your password" /><label className="checkbox-field"><input type="checkbox" /> Remember this device <a href="mailto:ttfa@centralcorridor-ttfa.org">Forgot Password?</a></label><button className="button" type="button">Login to System</button></form></div></section>
+    <section className="institution-strip"><div className="site-container"><p>Integrated Transit Institutions</p><div>{["Tanzania Ports Authority", "Kigali Logistics Platform *", "Burundi Maritime Authority *", "Malawi Railways *", "Uganda Customs Office *"].map((name) => <span key={name}>{name}</span>)}</div></div></section>
+  </>;
+}

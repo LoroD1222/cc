@@ -1,0 +1,20 @@
+import Image from "next/image";
+import { Mail, MapPin, Paperclip, Phone } from "lucide-react";
+import { DemoSubmitButton } from "@/components/interactive";
+import { Field, PageHero, SectionHeading, TextAreaField } from "@/components/ui";
+import { countries } from "@/data/site";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({ title: "Contact CCTTFA", description: "Contact the CCTTFA Permanent Secretariat in Dar es Salaam or connect with national focal points across partner states.", path: "/contact", image: "/images/contact-hero.png" });
+
+const focalNames = ["Aloys Ndayishimiye", "Awaiting client confirmation *", "Evelyn Chiumia", "Claver Mugisha", "Rashid Kibwana", "Sarah Nakato", "Mwansa Chilufya"];
+
+export default function ContactPage() {
+  return <>
+    <PageHero eyebrow="Support & Liaison Networks" title="Direct Corridor Contact Channels" description="Get in touch with CCTTFA Permanent Secretariat Headquarters in Dar es Salaam, or connect with our regional country liaison focal points." image="/images/contact-hero.png" position="center 38%" />
+    <section className="section section-muted"><div className="site-container office-grid"><div><p className="eyebrow">Central Secretariat</p><h2>Dar es Salaam Office</h2><address><span><MapPin aria-hidden size={18} />2nd Floor, 202/7 Acacia Estates<br />84 Kinondoni Road, P.O. Box 2372<br />Dar es Salaam, Tanzania<br />* Address pending client confirmation</span><a href="tel:+255222127149"><Phone aria-hidden size={17} />+255 22 2127 149</a><a href="mailto:ttfa@centralcorridor-ttfa.org"><Mail aria-hidden size={17} />ttfa@centralcorridor-ttfa.org</a></address></div><div className="office-image"><Image src="/images/contact-office.png" alt="Container terminal at the Dar es Salaam office network" fill sizes="60vw" /></div></div></section>
+    <section className="section"><div className="site-container"><form className="form-card contact-form"><SectionHeading title="Send CCTTFA a Direct Message" /><div className="form-grid"><Field label="Full Name" name="name" placeholder="e.g. Your Name" /><Field label="Email Address" name="email" type="email" placeholder="e.g. your.name@example.com" /><Field label="Organization" name="organization" placeholder="e.g. Your Organization" /><Field label="Subject Focus" name="subject" placeholder="e.g. General Inquiry" /><div className="full-span"><TextAreaField label="Message / Inquiry Details" name="message" placeholder="Type your message here..." /></div><label className="field full-span"><span>Attach Supporting Documents (Optional)</span><span className="attachment-control"><Paperclip aria-hidden size={17} /> Drag and drop PDF proposal, maps, or request sheet (Max 15MB)<input className="sr-only" type="file" /></span></label></div><DemoSubmitButton>Submit Message to Secretariat</DemoSubmitButton></form></div></section>
+    <section className="section section-muted"><div className="site-container"><SectionHeading eyebrow="Secretariat Leaders" title="Key Administrative Contacts" /><div className="contact-card-grid">{[["Adv. OKANDJU OKONGE Flory", "Executive Secretary", "flory.okandju@centralcorridor-ttfa.org"], ["Eng. Melina Chileshe *", "Director of Infrastructure", "melina.chileshe@centralcorridor-ttfa.org *"], ["Awaiting client confirmation", "Director of Trade Facilitation", "Awaiting client confirmation"]].map(([name, role, email]) => <article key={name}><h3>{name}</h3><strong>{role}</strong><hr /><p>{email}</p><p>Ext: TBC</p></article>)}</div></div></section>
+    <section className="section"><div className="site-container"><SectionHeading eyebrow="Liaison Channels" title="National Focal Points" /><div className="focal-grid">{countries.map((country, index) => <article key={country.name}><h3><span><Image src={country.flag} alt="" fill sizes="1.25rem" /></span>{country.name}</h3><strong>{focalNames[index]}</strong><p>{country.name.toLowerCase().replaceAll(" ", "")}.liaison@ccttfa-focal.org</p></article>)}</div></div></section>
+  </>;
+}
