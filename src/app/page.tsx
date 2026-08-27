@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { NewsCard, ProjectCard, SectionHeading } from "@/components/ui";
 import { articles, countries, organs, projects } from "@/data/site";
 import { createPageMetadata } from "@/lib/metadata";
@@ -62,7 +62,7 @@ export default function HomePage() {
       <div className="site-container route-gallery-grid">
         {["/images/route-road.png", "/images/route-rail.png", "/images/route-port.png"].map((src, index) => <div className={index === 1 ? "featured" : ""} key={src}><Image src={src} alt="Central Corridor infrastructure" fill sizes="33vw" />{index === 1 && <span>Framework for Regional<br />Transit Cooperation</span>}</div>)}
       </div>
-      <div className="site-container framework-copy"><p>The Central Corridor Transit Transport Facilitation Agreement was established on 2nd September 2006. It is built on a shared mission to eliminate non-tariff trade barriers, upgrade critical rail, road and port networks, and establish an uninterrupted flow of commodities.</p><div className="mini-flags">{countries.map((country) => <span key={country.name}><Image src={country.flag} alt="" fill sizes="1.5rem" /></span>)}</div><p className="framework-check"><Check aria-hidden size={18} /> Seven partner states working through one framework</p></div>
+      <div className="site-container framework-copy"><p>The Central Corridor Transit Transport Facilitation Agreement was established on 2nd September 2006. It is built on a shared mission to eliminate non-tariff trade barriers, upgrade critical rail, road and port networks, and establish an uninterrupted flow of commodities.</p><div className="mini-flags">{countries.map((country) => <span key={country.name}><Image src={country.flag} alt="" fill sizes="1.5rem" /></span>)}</div></div>
     </section>
   </>;
 }

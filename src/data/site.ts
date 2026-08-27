@@ -5,6 +5,7 @@ export type Country = {
 };
 
 export type Article = {
+  slug: string;
   title: string;
   excerpt: string;
   image: string;
@@ -28,7 +29,8 @@ export const publicNavigation = [
   { label: "About us", href: "/about" },
   { label: "The Corridor", href: "/corridor" },
   { label: "Projects", href: "/projects" },
-  { label: "News & Tenders", href: "/news" },
+  { label: "News", href: "/news" },
+  { label: "Tenders", href: "/tenders" },
   { label: "Resources", href: "/resources" },
 ];
 
@@ -49,12 +51,12 @@ export const countries: Country[] = [
 ];
 
 export const articles: Article[] = [
-  { title: "30th Board of Directors Reviews Progress and Guides Future", excerpt: "Board reviewed FY2025/26 achievements, approved the next Business Plan and handed over chairmanship.", image: "/images/news-board.png", category: "Meetings", date: "Jun 16, 2026" },
-  { title: "Landmark Transport Investments in Kigoma Strengthen Corridor", excerpt: "Official delegation evaluates railway and dry-port readiness to receive regional transit cargo.", image: "/images/news-cover-2.png", category: "Infrastructure", date: "Jul 20, 2026" },
-  { title: "CCTTFA Strengthens Capacity on Green Freight", excerpt: "A joint regional initiative builds emissions accounting capacity across the corridor.", image: "/images/news-cover-3.png", category: "Capacity Building", date: "Jul 30, 2026" },
-  { title: "Malawi Accedes to Central Corridor Agreement", excerpt: "The agreement expands the partnership and strengthens regional connectivity.", image: "/images/news-cover-1.png", category: "Accession", date: "Dec 01, 2023" },
-  { title: "Single Customs Territory Advances Along the Corridor", excerpt: "Customs bodies continue harmonizing procedures to reduce border clearance times.", image: "/images/news-cover-4.png", category: "Meetings", date: "Jul 14, 2024" },
-  { title: "Transport Observatory Tracks Corridor Performance", excerpt: "The observatory reveals Dar Port dwell times decreased to 4.2 days.", image: "/images/news-cover-5.png", category: "Capacity Building", date: "Aug 12, 2025" },
+  { slug: "board-of-directors-reviews-progress", title: "30th Board of Directors Reviews Progress and Guides Future", excerpt: "Board reviewed FY2025/26 achievements, approved the next Business Plan and handed over chairmanship.", image: "/images/news-board.png", category: "Meetings", date: "Jun 16, 2026" },
+  { slug: "kigoma-transport-investments", title: "Landmark Transport Investments in Kigoma Strengthen Corridor", excerpt: "Official delegation evaluates railway and dry-port readiness to receive regional transit cargo.", image: "/images/news-cover-2.png", category: "Infrastructure", date: "Jul 20, 2026" },
+  { slug: "green-freight-capacity", title: "CCTTFA Strengthens Capacity on Green Freight", excerpt: "A joint regional initiative builds emissions accounting capacity across the corridor.", image: "/images/news-cover-3.png", category: "Capacity Building", date: "Jul 30, 2026" },
+  { slug: "malawi-accedes-central-corridor", title: "Malawi Accedes to Central Corridor Agreement", excerpt: "The agreement expands the partnership and strengthens regional connectivity.", image: "/images/news-cover-1.png", category: "Accession", date: "Dec 01, 2023" },
+  { slug: "single-customs-territory", title: "Single Customs Territory Advances Along the Corridor", excerpt: "Customs bodies continue harmonizing procedures to reduce border clearance times.", image: "/images/news-cover-4.png", category: "Meetings", date: "Jul 14, 2024" },
+  { slug: "transport-observatory-performance", title: "Transport Observatory Tracks Corridor Performance", excerpt: "The observatory reveals Dar Port dwell times decreased to 4.2 days.", image: "/images/news-cover-5.png", category: "Capacity Building", date: "Aug 12, 2025" },
 ];
 
 export const projects: Project[] = [

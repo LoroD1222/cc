@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import { Anchor, ArrowRight, Download, FileText, MapPin, Ship, TrainFront, Truck } from "lucide-react";
 import type { Article, Project } from "@/data/site";
 
+export { SidebarNav } from "@/components/sidebar-nav";
+
 export function PageHero({ eyebrow, title, description, image, position = "center" }: { eyebrow: string; title: string; description: string; image: string; position?: string }) {
   return (
     <section className="page-hero">
@@ -22,12 +24,8 @@ export function SectionHeading({ eyebrow, title, description, align = "left" }: 
   return <div className={`section-heading ${align === "center" ? "text-center" : ""}`}>{eyebrow && <p className="eyebrow">{eyebrow}</p>}<h2>{title}</h2>{description && <p>{description}</p>}</div>;
 }
 
-export function SidebarNav({ label = "Navigation", items }: { label?: string; items: { label: string; href: string }[] }) {
-  return <aside className="sidebar-nav" aria-label={`${label} in-page navigation`}><p>{label}</p><nav>{items.map((item, index) => <a className={index === 0 ? "active" : ""} href={item.href} key={item.href}>{item.label}</a>)}</nav></aside>;
-}
-
 export function NewsCard({ article }: { article: Article }) {
-  return <article className="news-card"><div className="card-image"><Image src={article.image} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" /></div><div className="card-body"><div className="card-meta"><span className="badge badge-dark">{article.category}</span><time>{article.date}</time></div><h3>{article.title}</h3><p>{article.excerpt}</p><Link className="text-link" href="/news">Read article <ArrowRight aria-hidden size={16} /></Link></div></article>;
+  return <article className="news-card"><div className="card-image"><Image src={article.image} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" /></div><div className="card-body"><div className="card-meta"><span className="badge badge-dark">{article.category}</span><time>{article.date}</time></div><h3>{article.title}</h3><p>{article.excerpt}</p><Link className="text-link" href={`/news/${article.slug}`}>Read article <ArrowRight aria-hidden size={16} /></Link></div></article>;
 }
 
 const icons = { Railway: TrainFront, Road: Truck, Port: Anchor };
