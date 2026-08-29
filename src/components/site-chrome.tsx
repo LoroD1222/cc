@@ -87,7 +87,7 @@ export function SiteFooter() {
         <div className="footer-brand">
           <Image src="/images/logo-white.png" alt="Central Corridor Transit Transport Facilitation Agency" width={450} height={70} />
           <p>Connecting seven sovereign nations to regional and international maritime trade paths through integrated, resilient multi-modal logistics networks.</p>
-          <div className="socials" aria-label="Social media links"><a href="https://x.com" aria-label="X">𝕏</a><a href="https://facebook.com" aria-label="Facebook">f</a><a href="https://youtube.com" aria-label="YouTube">▶</a></div>
+          <div className="socials" aria-label="Social media links"><a href="https://x.com" aria-label="X">𝕏</a><a href="https://facebook.com" aria-label="Facebook">f</a><a href="https://youtube.com" aria-label="YouTube">▶</a><a className="social-linkedin" href="https://www.linkedin.com/company/central-corridor-transit-transport-facilitation-agency/" aria-label="LinkedIn" target="_blank" rel="noreferrer">in</a></div>
         </div>
         <div>
           <h2>Explore</h2>

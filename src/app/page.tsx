@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { NewsCard, ProjectCard, SectionHeading } from "@/components/ui";
+import { RouteGalleryCarousel } from "@/components/route-gallery-carousel";
 import { articles, countries, organs, projects } from "@/data/site";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -32,7 +33,7 @@ export default function HomePage() {
           <article className="executive-card"><div><Image src="/images/leader-flory.png" alt="Adv. Okandju Okonge Flory, Executive Secretary" fill sizes="20rem" /></div><h2>Adv. Okandju Okonge Flory <span>Executive Secretary</span></h2><Link className="text-link" href="/about/executive-secretary">Executive Secretary&apos;s Message <ArrowRight aria-hidden size={15} /></Link></article>
           <article className="tender-card"><p className="eyebrow">Tenders</p><hr /><span className="badge badge-open">Open</span><small>Ref. CCTTFA/PR/2026/04</small><h3>Provision of Medical Insurance Service Provider</h3><p>Closes Nov 30, 2026</p><Link className="text-link" href="/tenders">View all tenders <ArrowRight aria-hidden size={15} /></Link><hr /><p className="eyebrow">Vacancies</p><p>No active vacancies at the moment</p></article>
         </aside>
-        <div className="home-article-grid">{articles.slice(0, 6).map((article) => <NewsCard article={article} key={article.title} />)}<Link className="button home-news-button" href="/news">View more news</Link></div>
+        <div className="home-article-grid">{articles.slice(0, 4).map((article) => <NewsCard article={article} key={article.title} />)}<Link className="button home-news-button" href="/news">View More News</Link></div>
       </div>
     </section>
 
@@ -59,9 +60,7 @@ export default function HomePage() {
     </section>
 
     <section className="home-route-gallery section-pale">
-      <div className="site-container route-gallery-grid">
-        {["/images/route-road.png", "/images/route-rail.png", "/images/route-port.png"].map((src, index) => <div className={index === 1 ? "featured" : ""} key={src}><Image src={src} alt="Central Corridor infrastructure" fill sizes="33vw" />{index === 1 && <span>Framework for Regional<br />Transit Cooperation</span>}</div>)}
-      </div>
+      <RouteGalleryCarousel />
       <div className="site-container framework-copy"><p>The Central Corridor Transit Transport Facilitation Agreement was established on 2nd September 2006. It is built on a shared mission to eliminate non-tariff trade barriers, upgrade critical rail, road and port networks, and establish an uninterrupted flow of commodities.</p><div className="mini-flags">{countries.map((country) => <span key={country.name}><Image src={country.flag} alt="" fill sizes="1.5rem" /></span>)}</div></div>
     </section>
   </>;
