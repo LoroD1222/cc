@@ -611,13 +611,13 @@ h3 { font-size: 1.25rem; }
 .directory-card h3 { margin: 0 0 0.35rem; font-size: 0.95rem; line-height: 1.25; }
 .directory-card strong { display: block; color: var(--cyan); font-size: 0.75rem; line-height: 1.4; }
 .directory-card p:not(.eyebrow) { margin: 0.35rem 0 0; color: var(--body); font-size: 0.78rem; line-height: 1.4; }
-.stacon-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stacon-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .board-secretary { max-width: 30rem; margin-top: 1.5rem; } .board-secretary > .eyebrow { margin-bottom: 0.65rem; } .board-secretary .directory-card { border-color: rgb(0 173 239 / 45%); box-shadow: var(--shadow-sm); } .board-directory-grid { margin-top: 1.5rem; }
 .staff-directory { margin-top: 1.5rem; }
 .staff-executive { max-width: 26rem; margin: 1.75rem auto 0; }
 .staff-executive .directory-card { border-color: rgb(0 173 239 / 45%); box-shadow: var(--shadow-sm); }
 .staff-chart-arrow { display: block; margin: 1rem auto 0.4rem; color: var(--cyan); }
 .staff-reporting-label { margin: 0 auto 1rem; color: var(--body); font-size: 0.8rem; font-weight: 700; text-align: center; }
-.staff-directory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; position: relative; }
+.staff-directory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; position: relative; } .directory-toggle { display: flex; align-items: center; gap: 0.4rem; margin: 1.5rem auto 0; padding: 0; border: 0; color: var(--cyan); background: transparent; font-size: 0.85rem; font-weight: 800; } .directory-toggle:hover { color: var(--deep); }
 @media (max-width: 58rem) { .directory-grid, .staff-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 42rem) { .route-carousel-controls { margin-top: -2.25rem; } .route-carousel-controls p { min-width: 8rem; } .country-stakeholders, .directory-section, .staff-directory { padding: 1.25rem; } .stakeholder-grid, .directory-grid, .stacon-directory-grid, .staff-directory-grid { grid-template-columns: 1fr; } .directory-card { min-height: auto; } }
 

@@ -26,7 +26,7 @@ export function RouteGalleryCarousel() {
 
   return <div className="route-gallery-carousel" aria-roledescription="carousel" aria-label="Central Corridor infrastructure gallery">
     <div className="route-gallery-grid">
-      {visibleSlides.map((slide, index) => { const Icon = slide.icon; return <div className={index === 1 ? "featured route-carousel-slide" : "route-carousel-slide"} key={`-`}><Image src={slide.src} alt={slide.alt} fill sizes="(max-width: 42rem) 100vw, 40vw" />{index === 1 && <span><i className="route-carousel-icon"><Icon aria-hidden size={22} /></i><small>{slide.type}</small>{slide.title}</span>}</div>; })}
+      {visibleSlides.map((slide, index) => { const Icon = slide.icon; return <div className={index === 1 ? "featured route-carousel-slide" : "route-carousel-slide"} key={`${slide.src}-${active}`}><Image src={slide.src} alt={slide.alt} fill sizes="(max-width: 42rem) 100vw, 40vw" />{index === 1 && <span><i className="route-carousel-icon"><Icon aria-hidden size={22} /></i><small>{slide.type}</small>{slide.title}</span>}</div>; })}
     </div>
     <div className="route-carousel-controls"><button type="button" aria-label="Show previous gallery images" onClick={() => move(-1)}><ChevronLeft aria-hidden size={20} /></button><p aria-live="polite">{slides[active].type}</p><button type="button" aria-label="Show next gallery images" onClick={() => move(1)}><ChevronRight aria-hidden size={20} /></button></div>
   </div>;
