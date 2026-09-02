@@ -24,7 +24,7 @@ export function RouteGalleryCarousel() {
 
   const visibleSlides = [0, 1, 2].map((offset) => slides[(active + offset) % slides.length]);
 
-  return <div className="route-gallery-carousel" aria-roledescription="carousel" aria-label="Central Corridor infrastructure gallery">
+  return <div className="site-container route-gallery-carousel" aria-roledescription="carousel" aria-label="Central Corridor infrastructure gallery">
     <div className="route-gallery-grid">
       {visibleSlides.map((slide, index) => { const Icon = slide.icon; return <div className={index === 1 ? "featured route-carousel-slide" : "route-carousel-slide"} key={`${slide.src}-${active}`}><Image src={slide.src} alt={slide.alt} fill sizes="(max-width: 42rem) 100vw, 40vw" />{index === 1 && <span><i className="route-carousel-icon"><Icon aria-hidden size={22} /></i><small>{slide.type}</small>{slide.title}</span>}</div>; })}
     </div>
