@@ -9,7 +9,7 @@ import type { Article } from "@/data/site";
 export function NewsExplorer({ articles }: { articles: Article[] }) {
   const [category, setCategory] = useState("All News");
   const [query, setQuery] = useState("");
-  const categories = ["All News", "Meetings", "Infrastructure", "Capacity Building", "Accession"];
+  const categories = ["All News", ...Array.from(new Set(articles.map((article) => article.category)))];
   const filtered = useMemo(() => articles.filter((article) => (category === "All News" || article.category === category) && article.title.toLowerCase().includes(query.toLowerCase())), [articles, category, query]);
   return <div><div className="news-tools"><div className="category-tabs" role="group" aria-label="Filter news by category">{categories.map((item) => <button className={category === item ? "active" : ""} type="button" aria-pressed={category === item} onClick={() => setCategory(item)} key={item}>{item}</button>)}</div><label className="search-box"><span className="sr-only">Search news</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search news..." /><Search aria-hidden size={17} /></label></div><div className="card-grid news-results">{filtered.map((article) => <NewsCard article={article} key={article.title} />)}</div>{filtered.length === 0 && <p className="empty-state">No articles match those filters.</p>}</div>;
 }

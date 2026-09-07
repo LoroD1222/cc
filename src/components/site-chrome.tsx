@@ -112,6 +112,8 @@ export function SiteFooter() {
             <li><Link href="/portal">Stakeholder Portal</Link></li>
             <li><Link href="/contact">Contact Us</Link></li>
             <li><Link href="/feedback">Submit Feedback</Link></li>
+            <li><a className="footer-contact-link" href="tel:+255222127149">+255 22 2127 149</a></li>
+            <li><a className="footer-contact-link" href="mailto:ttfa@centralcorridor-ttfa.org">ttfa@centralcorridor-ttfa.org</a></li>
           </ul>
         </div>
       </div>

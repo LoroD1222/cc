@@ -53,12 +53,29 @@ export const countries: Country[] = [
 ];
 
 export const articles: Article[] = [
-  { slug: "board-of-directors-reviews-progress", title: "30th Board of Directors Reviews Progress and Guides Future", excerpt: "Board reviewed FY2025/26 achievements, approved the next Business Plan and handed over chairmanship.", image: "/images/news-board.png", category: "Meetings", date: "Jun 16, 2026" },
-  { slug: "kigoma-transport-investments", title: "Landmark Transport Investments in Kigoma Strengthen Corridor", excerpt: "Official delegation evaluates railway and dry-port readiness to receive regional transit cargo.", image: "/images/news-cover-2.png", category: "Infrastructure", date: "Jul 20, 2026" },
-  { slug: "green-freight-capacity", title: "CCTTFA Strengthens Capacity on Green Freight", excerpt: "A joint regional initiative builds emissions accounting capacity across the corridor.", image: "/images/news-cover-3.png", category: "Capacity Building", date: "Jul 30, 2026" },
-  { slug: "malawi-accedes-central-corridor", title: "Malawi Accedes to Central Corridor Agreement", excerpt: "The agreement expands the partnership and strengthens regional connectivity.", image: "/images/news-cover-1.png", category: "Accession", date: "Dec 01, 2023" },
-  { slug: "single-customs-territory", title: "Single Customs Territory Advances Along the Corridor", excerpt: "Customs bodies continue harmonizing procedures to reduce border clearance times.", image: "/images/news-cover-4.png", category: "Meetings", date: "Jul 14, 2024" },
-  { slug: "transport-observatory-performance", title: "Transport Observatory Tracks Corridor Performance", excerpt: "The observatory reveals Dar Port dwell times decreased to 4.2 days.", image: "/images/news-cover-5.png", category: "Capacity Building", date: "Aug 12, 2025" },
+  { slug: "lake-tanganyika-authority-cooperation", title: "CCTTFA and Lake Tanganyika Authority Strengthen Cooperation for Sustainable Transport and Regional Trade", excerpt: "CCTTFA and the Lake Tanganyika Authority signed an MoU to advance sustainable transport, maritime safety and regional trade.", image: "/images/news-lake-tanganyika-authority.jpeg", category: "Partnerships", date: "Aug 12, 2026" },
+  { slug: "tanzania-maniema-transport-cooperation", title: "Tanzania and Maniema Province Deepen Cooperation on Strategic Transport Infrastructure and Trade Development", excerpt: "A high-level technical engagement advanced strategic infrastructure and trade-development cooperation between Tanzania and Maniema Province.", image: "/images/news-maniema-cooperation.jpeg", category: "Infrastructure", date: "Aug 05, 2026" },
+  { slug: "green-freight-emissions-accounting", title: "CCTTFA Strengthens Regional Capacity on Green Freight and Emissions Accounting", excerpt: "Regional participants strengthened practical capacity in freight decarbonisation and emissions-accounting methods.", image: "/images/news-green-freight.jpg", category: "Capacity Building", date: "Jul 30, 2026" },
+  { slug: "kigoma-transport-investments", title: "Landmark Transport Investments in Kigoma Strengthen the Central Corridor’s Competitiveness", excerpt: "New investments in Kigoma support a stronger, more competitive multimodal Central Corridor network.", image: "/images/news-kigoma-investments.jpeg", category: "Infrastructure", date: "Jul 20, 2026" },
+  { slug: "15th-inter-state-council-of-ministers", title: "15th Inter-State Council of Ministers Meeting Strengthens Regional Cooperation", excerpt: "The 15th Ordinary ICM Meeting in Dar es Salaam advanced strategic Central Corridor priorities and regional cooperation.", image: "/images/news-icm-2026.jpg", category: "Meetings", date: "Jun 18, 2026" },
+  { slug: "30th-board-of-directors-meeting", title: "30th Ordinary Board of Directors Meeting Reviews Progress and Guides the Future", excerpt: "Board representatives met in Dar es Salaam to review progress and guide the Central Corridor’s next priorities.", image: "/images/news-board-2026.jpeg", category: "Meetings", date: "Jun 15, 2026" },
+];
+
+export type SecretariatStaff = {
+  name: string;
+  designation: string;
+  unit: string;
+  photo: string;
+};
+
+export const secretariatLeadership: SecretariatStaff[] = [
+  { name: "Emmanuel Rutagengwa", designation: "Director — Transport Policy & Planning", unit: "Transport Policy & Planning Directorate", photo: "/images/avatar-placeholder.svg" },
+  { name: "Name pending official confirmation", designation: "Director — Infrastructure Development", unit: "Infrastructure Development Directorate", photo: "/images/avatar-placeholder.svg" },
+  { name: "Melchior Barantandikiye", designation: "Director — Logistics & Transit Facilitation", unit: "Logistics & Transit Facilitation Directorate", photo: "/images/avatar-placeholder.svg" },
+  { name: "Charles Mtonga", designation: "Director — Customs & Trade Facilitation", unit: "Customs & Trade Facilitation Directorate", photo: "/images/avatar-placeholder.svg" },
+  { name: "Name pending official confirmation", designation: "Director — Finance & Administration", unit: "Finance & Administration Directorate", photo: "/images/avatar-placeholder.svg" },
+  { name: "Name pending official confirmation", designation: "Director — Monitoring, Evaluation & Data", unit: "Monitoring, Evaluation & Data Directorate", photo: "/images/avatar-placeholder.svg" },
+  { name: "Grace Kutemba", designation: "Director — Communication & Advocacy", unit: "Communication & Advocacy Directorate", photo: "/images/avatar-placeholder.svg" },
 ];
 
 export const projects: Project[] = [

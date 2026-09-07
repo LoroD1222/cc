@@ -15,7 +15,7 @@ export default function HomePage() {
       <div className="home-hero-overlay" />
       <div className="site-container home-hero-content">
         <h1>Seven nations.<br />One corridor to the sea.</h1>
-        <p>The Central Corridor connects East and Central Africa&apos;s landlocked nations to the sea through the Port of Dar es Salaam via an integrated multimodal transport and logistics network.</p>
+        <p>The Central Corridor is an integrated multimodal transport and logistics network connecting its landlocked Member States to the sea through Tanzania&apos;s ports of Dar es Salaam, Bagamoyo, Tanga and Mtwara, reflecting the expanded scope of the CCTTFA Protocols.</p>
         <div className="hero-actions"><Link className="button" href="/about">Our mission</Link><Link className="button button-outline" href="/corridor">Explore routes</Link></div>
       </div>
     </section>
