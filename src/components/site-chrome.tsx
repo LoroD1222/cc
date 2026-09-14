@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { publicNavigation } from "@/data/site";
+import { countries, publicNavigation } from "@/data/site";
 
 const moreNavigation = [
   { label: "Stakeholder Portal", href: "/portal" },
@@ -104,6 +104,12 @@ export function SiteFooter() {
             <li><Link href="/news">News & Events</Link></li>
             <li><Link href="/tenders">Tenders & Procurement</Link></li>
             <li><Link href="/resources">Resources</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Member States</h2>
+          <ul>
+            {countries.map((country) => <li key={country.slug}><Link href={`/countries/${country.slug}`}>{country.name}</Link></li>)}
           </ul>
         </div>
         <div>
