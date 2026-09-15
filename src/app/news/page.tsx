@@ -1,9 +1,10 @@
 import { CalendarDays } from "lucide-react";
 import { NewsExplorer } from "@/components/interactive";
 import { LocationLine, PageHero, SectionHeading } from "@/components/ui";
-import { articles } from "@/data/site";
 import { createPageMetadata } from "@/lib/metadata";
+import { getNewsArticles } from "@/sanity/news";
 
+export const revalidate = 60;
 export const metadata = createPageMetadata({ title: "News & Events", description: "Regional transit news, corridor insights, upcoming workshops and operational bulletins from CCTTFA.", path: "/news", image: "/images/news-hero.png" });
 
 const events = [
@@ -12,7 +13,9 @@ const events = [
   { day: "05", month: "DEC", title: "Lake Victoria Water Safety and Inland Barges Summit", location: "Mwanza, Tanzania", text: "Reviewing navigation buoy masterplans and emergency satellite communication coverage." },
 ];
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const articles = await getNewsArticles();
+
   return <>
     <PageHero eyebrow="Communication Hub" title="Regional Transit News & Insights" description="Stay informed with real-time updates, treaty amendments, high-level visits, and operational bulletins across the Central Corridor logistics grid." image="/images/news-hero.png" position="center 36%" />
     <section className="section"><div className="site-container news-layout"><div><NewsExplorer articles={articles} /></div><aside className="news-aside"><section><h2>Popular Highlights</h2>{["Dar es Salaam Port Expansion Masterplan (2026–2035)", "Burundi OSBP Border Post Delay Index Reduced", "Single Window Customs Integration Updates"].map((title) => <article key={title}><span>Highlight</span><h3>{title}</h3></article>)}</section><section className="bulletin-card"><h2>Corridor Bulletin</h2><p>Subscribe to receive monthly regional logistics observatory updates and active tender announcements.</p><label className="field"><span className="sr-only">Email</span><input type="email" placeholder="your.email@domain.com" /></label><button className="button" type="button">Subscribe</button></section></aside></div></section>

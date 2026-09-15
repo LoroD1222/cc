@@ -3,12 +3,16 @@ import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { NewsCard, ProjectCard, SectionHeading } from "@/components/ui";
 import { RouteGalleryCarousel } from "@/components/route-gallery-carousel";
-import { articles, countries, organs, projects } from "@/data/site";
+import { countries, organs, projects } from "@/data/site";
 import { createPageMetadata } from "@/lib/metadata";
+import { getLatestNewsArticles } from "@/sanity/news";
 
+export const revalidate = 60;
 export const metadata = createPageMetadata({ title: "Seven Nations. One Corridor to the Sea", description: "Explore the Central Corridor's seven partner states, regional projects, news, governance and multimodal trade network.", path: "/", image: "/images/home-hero.png" });
 
-export default function HomePage() {
+export default async function HomePage() {
+  const articles = await getLatestNewsArticles();
+
   return <>
     <section className="home-hero">
       <Image src="/images/home-hero.png" alt="Aerial view of container operations at the Port of Dar es Salaam" fill preload sizes="100vw" />
@@ -33,7 +37,7 @@ export default function HomePage() {
           <article className="executive-card"><div><Image src="/images/leader-flory.png" alt="Adv. Okandju Okonge Flory, Executive Secretary" fill sizes="20rem" /></div><h2>Adv. Okandju Okonge Flory <span>Executive Secretary</span></h2><Link className="text-link" href="/about/executive-secretary">Executive Secretary&apos;s Message <ArrowRight aria-hidden size={15} /></Link></article>
           <article className="tender-card"><p className="eyebrow">Tenders</p><hr /><span className="badge badge-open">Open</span><small>Ref. CCTTFA/PR/2026/04</small><h3>Provision of Medical Insurance Service Provider</h3><p>Closes Nov 30, 2026</p><Link className="text-link" href="/tenders">View all tenders <ArrowRight aria-hidden size={15} /></Link><hr /><p className="eyebrow">Vacancies</p><p>No active vacancies at the moment</p></article>
         </aside>
-        <div className="home-article-grid">{articles.slice(0, 4).map((article) => <NewsCard article={article} key={article.title} />)}<Link className="button home-news-button" href="/news">View More News</Link></div>
+        <div className="home-article-grid">{articles.map((article) => <NewsCard article={article} key={article.slug} />)}<Link className="button home-news-button" href="/news">View More News</Link></div>
       </div>
     </section>
 
