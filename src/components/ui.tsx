@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Anchor, ArrowRight, Download, FileText, MapPin, Ship, TrainFront, Truck } from "lucide-react";
 import type { Article, Project } from "@/data/site";
+import type { CmsResource } from "@/sanity/resources";
 
 export { SidebarNav } from "@/components/sidebar-nav";
 
@@ -21,7 +22,7 @@ export function PageHero({ eyebrow, title, description, image, position = "cente
 }
 
 export function SectionHeading({ eyebrow, title, description, align = "left" }: { eyebrow?: string; title: string; description?: string; align?: "left" | "center" }) {
-  return <div className={`section-heading ${align === "center" ? "text-center" : ""}`}>{eyebrow && <p className="eyebrow">{eyebrow}</p>}<h2>{title}</h2>{description && <p>{description}</p>}</div>;
+  return <div className={`section-heading ${align === "center" ? "text-center" : ""}`}><>{eyebrow && <p className="eyebrow">{eyebrow}</p>}</><h2>{title}</h2>{description && <p>{description}</p>}</div>;
 }
 
 export function NewsCard({ article }: { article: Article }) {
@@ -53,8 +54,8 @@ export function TextAreaField({ label, name, placeholder, required = false }: { 
   return <label className="field"><span>{label}</span><textarea name={name} placeholder={placeholder} required={required} /></label>;
 }
 
-export function ResourceCard({ item }: { item: { type: string; year: string; title: string; size: string } }) {
-  return <article className="resource-card"><div className="resource-meta"><span>{item.type}</span><time>{item.year}</time></div><h3>{item.title}</h3><p><FileText aria-hidden size={17} /> PDF, {item.size}</p><button className="button button-dark" type="button"><Download aria-hidden size={16} /> Download PDF</button></article>;
+export function ResourceCard({ item }: { item: CmsResource }) {
+  return <article className="resource-card"><div className="resource-meta"><span>{item.type}</span><time>{item.year}</time></div><h3>{item.title}</h3><p><FileText aria-hidden size={17} /> {item.size}</p>{item.url ? <a className="button button-dark" href={item.url} target="_blank" rel="noreferrer"><Download aria-hidden size={16} /> {item.actionLabel}</a> : <span className="button button-dark" aria-disabled="true">File unavailable</span>}</article>;
 }
 
 export function RouteIcon({ type }: { type: "rail" | "road" | "lake" | "port" }) {

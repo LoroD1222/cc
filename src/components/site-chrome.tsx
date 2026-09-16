@@ -6,19 +6,34 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { countries, publicNavigation } from "@/data/site";
+import type { SiteSettings } from "@/sanity/settings";
 
 const moreNavigation = [
   { label: "Stakeholder Portal", href: "/portal" },
   { label: "Feedback", href: "/feedback" },
 ];
 
-export function SiteHeader() {
+const fallbackSocialLinks = [
+  { platform: "X", url: "https://x.com" },
+  { platform: "Facebook", url: "https://web.facebook.com/ccttfa/?locale2=en_GB&_rdc=1&_rdr" },
+  { platform: "YouTube", url: "https://www.youtube.com/channel/UCFGND1xlZbPl2Uf0fTYLO_A" },
+  { platform: "LinkedIn", url: "https://www.linkedin.com/company/central-corridor-transit-transport-facilitation-agency/" },
+];
+
+function socialMark(platform: string) {
+  const labels: Record<string, string> = {X: "𝕏", Facebook: "f", YouTube: "▶", LinkedIn: "in", Instagram: "◎", Other: "↗"};
+  return labels[platform] || "↗";
+}
+
+export function SiteHeader({ settings }: { settings?: SiteSettings | null }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
   const moreActive = moreNavigation.some((item) => pathname === item.href || pathname.startsWith(item.href));
   const mobileNavigation = [...publicNavigation, ...moreNavigation, { label: "Contact us", href: "/contact" }];
+  const organisationName = settings?.organisationName || "Central Corridor Transit Transport Facilitation Agency";
+  const logo = settings?.logo || "/images/logo.png";
 
   useEffect(() => {
     const closeOnOutsideClick = (event: MouseEvent) => {
@@ -40,7 +55,7 @@ export function SiteHeader() {
     <header className={`site-header ${pathname === "/" ? "home-header" : ""}`}>
       <div className="site-container header-inner">
         <Link className="brand" href="/" aria-label="Central Corridor home">
-          <Image src="/images/logo.png" alt="Central Corridor Transit Transport Facilitation Agency" width={450} height={70} preload />
+          <Image src={logo} alt={organisationName} width={450} height={70} preload />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {publicNavigation.map((item) => {
@@ -80,14 +95,23 @@ export function SiteHeader() {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ settings }: { settings?: SiteSettings | null }) {
+  const organisationName = settings?.organisationName || "Central Corridor Transit Transport Facilitation Agency";
+  const footerNote = settings?.footerNote || "Connecting seven sovereign nations to regional and international maritime trade paths through integrated, resilient multi-modal logistics networks.";
+  const phone = settings?.phone || "+255 22 2127 149";
+  const email = settings?.email || "ttfa@centralcorridor-ttfa.org";
+  const address = settings?.address || "Dar es Salaam, Tanzania";
+  const logo = settings?.logo || "/images/logo-white.png";
+  const socialLinks = settings?.socialLinks.length ? settings.socialLinks : fallbackSocialLinks;
+  const phoneHref = `tel:${phone.replace(/[^\d+]/g, "")}`;
+
   return (
     <footer className="site-footer">
       <div className="site-container footer-grid">
         <div className="footer-brand">
-          <Image src="/images/logo-white.png" alt="Central Corridor Transit Transport Facilitation Agency" width={450} height={70} />
-          <p>Connecting seven sovereign nations to regional and international maritime trade paths through integrated, resilient multi-modal logistics networks.</p>
-          <div className="socials" aria-label="Social media links"><a href="https://x.com" aria-label="X">𝕏</a><a href="https://web.facebook.com/ccttfa/?locale2=en_GB&_rdc=1&_rdr" aria-label="Facebook">f</a><a href="https://www.youtube.com/channel/UCFGND1xlZbPl2Uf0fTYLO_A" aria-label="YouTube">▶</a><a className="social-linkedin" href="https://www.linkedin.com/company/central-corridor-transit-transport-facilitation-agency/" aria-label="LinkedIn" target="_blank" rel="noreferrer">in</a></div>
+          <Image src={logo} alt={organisationName} width={450} height={70} />
+          <p>{footerNote}</p>
+          <div className="socials" aria-label="Social media links">{socialLinks.map((link) => <a className={link.platform === "LinkedIn" ? "social-linkedin" : undefined} href={link.url} aria-label={link.platform} key={`${link.platform}-${link.url}`} target="_blank" rel="noreferrer">{socialMark(link.platform)}</a>)}</div>
         </div>
         <div>
           <h2>Explore</h2>
@@ -118,12 +142,12 @@ export function SiteFooter() {
             <li><Link href="/portal">Stakeholder Portal</Link></li>
             <li><Link href="/contact">Contact Us</Link></li>
             <li><Link href="/feedback">Submit Feedback</Link></li>
-            <li><a className="footer-contact-link" href="tel:+255222127149">+255 22 2127 149</a></li>
-            <li><a className="footer-contact-link" href="mailto:ttfa@centralcorridor-ttfa.org">ttfa@centralcorridor-ttfa.org</a></li>
+            <li><a className="footer-contact-link" href={phoneHref}>{phone}</a></li>
+            <li><a className="footer-contact-link" href={`mailto:${email}`}>{email}</a></li>
           </ul>
         </div>
       </div>
-      <div className="footer-bottom"><div className="site-container"><span>© 2026 CCTTFA Permanent Secretariat. All rights reserved.</span><span>Dar es Salaam, Tanzania</span><a href="mailto:ttfa@centralcorridor-ttfa.org">ttfa@centralcorridor-ttfa.org</a></div></div>
+      <div className="footer-bottom"><div className="site-container"><span>© 2026 {settings?.shortName || "CCTTFA"} Permanent Secretariat. All rights reserved.</span><span>{address}</span><a href={`mailto:${email}`}>{email}</a></div></div>
     </footer>
   );
 }

@@ -106,3 +106,31 @@ export const projectBySlugQuery = defineQuery(/* groq */ `
     }
   }
 `);
+
+export const resourceDocumentsQuery = defineQuery(/* groq */ `
+  *[_type == "resourceDocument"]
+  | order(coalesce(publishedAt, _createdAt) desc, title asc) {
+    _id,
+    title,
+    documentType,
+    publishedAt,
+    summary,
+    sourceType,
+    "url": coalesce(file.asset->url, externalUrl),
+    "fileSize": file.asset->size
+  }
+`);
+
+export const siteSettingsQuery = defineQuery(/* groq */ `
+  *[_type == "siteSettings"][0] {
+    organisationName,
+    shortName,
+    tagline,
+    "logo": logo.asset->url,
+    email,
+    phone,
+    address,
+    footerNote,
+    socialLinks[]{platform, url}
+  }
+`);

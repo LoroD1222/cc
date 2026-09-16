@@ -3,15 +3,17 @@ import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { NewsCard, ProjectCard, SectionHeading } from "@/components/ui";
 import { RouteGalleryCarousel } from "@/components/route-gallery-carousel";
-import { countries, organs, projects } from "@/data/site";
+import { countries, organs, projects as fallbackProjects } from "@/data/site";
 import { createPageMetadata } from "@/lib/metadata";
 import { getLatestNewsArticles } from "@/sanity/news";
+import { getProjects } from "@/sanity/projects";
 
 export const revalidate = 60;
 export const metadata = createPageMetadata({ title: "Seven Nations. One Corridor to the Sea", description: "Explore the Central Corridor's seven partner states, regional projects, news, governance and multimodal trade network.", path: "/", image: "/images/home-hero.png" });
 
 export default async function HomePage() {
-  const articles = await getLatestNewsArticles();
+  const [articles, cmsProjects] = await Promise.all([getLatestNewsArticles(), getProjects()]);
+  const projects = cmsProjects.length ? cmsProjects : fallbackProjects;
 
   return <>
     <section className="home-hero">
