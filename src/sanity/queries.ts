@@ -31,12 +31,18 @@ export const latestNewsArticlesQuery = defineQuery(/* groq */ `
   }
 `);
 
-export const allNewsArticlesQuery = defineQuery(/* groq */ `
-  *[_type == "article" && defined(slug.current)]
-  | order(publishedAt desc) {
-    ${articleCardFields}
-  }
+export const newsArticlesCountQuery = defineQuery(/* groq */ `
+  count(*[_type == "article" && defined(slug.current)])
 `);
+
+export function newsArticlesPageQuery(start: number, end: number) {
+  return defineQuery(/* groq */ `
+    *[_type == "article" && defined(slug.current)]
+    | order(publishedAt desc)[${start}...${end}] {
+      ${articleCardFields}
+    }
+  `);
+}
 
 export const newsArticleBySlugQuery = defineQuery(/* groq */ `
   *[_type == "article" && slug.current == $slug][0] {

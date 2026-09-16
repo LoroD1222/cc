@@ -1,10 +1,11 @@
 import {cache} from "react";
 import type {Article} from "@/data/site";
 import {client} from "@/sanity/client";
-import {allNewsArticlesQuery, latestNewsArticlesQuery, newsArticleBySlugQuery} from "@/sanity/queries";
+import {latestNewsArticlesQuery, newsArticleBySlugQuery, newsArticlesCountQuery, newsArticlesPageQuery} from "@/sanity/queries";
 
 const fallbackImage = "/images/news-hero.png";
 const fetchOptions = {next: {revalidate: 60, tags: ["article"]}};
+export const NEWS_PAGE_SIZE = 25;
 
 type SanityNewsArticle = {
   _id: string;
@@ -21,6 +22,13 @@ type SanityNewsArticle = {
 export type CmsNewsArticle = Article & {
   imageAlt: string;
   body: unknown[];
+};
+
+export type NewsPage = {
+  articles: Article[];
+  page: number;
+  totalArticles: number;
+  totalPages: number;
 };
 
 function topicLabel(topic: string) {
@@ -59,9 +67,15 @@ export const getLatestNewsArticles = cache(async (): Promise<Article[]> => {
   return articles.map(toArticleCard);
 });
 
-export const getNewsArticles = cache(async (): Promise<Article[]> => {
-  const articles = await client.fetch<SanityNewsArticle[]>(allNewsArticlesQuery, {}, fetchOptions);
-  return articles.map(toArticleCard);
+export const getNewsPage = cache(async (requestedPage: number): Promise<NewsPage> => {
+  const totalArticles = await client.fetch<number>(newsArticlesCountQuery, {}, fetchOptions);
+  const totalPages = Math.max(1, Math.ceil(totalArticles / NEWS_PAGE_SIZE));
+  const page = Math.min(Math.max(1, requestedPage), totalPages);
+  const start = (page - 1) * NEWS_PAGE_SIZE;
+  const end = start + NEWS_PAGE_SIZE;
+  const articles = await client.fetch<SanityNewsArticle[]>(newsArticlesPageQuery(start, end), {}, fetchOptions);
+
+  return {articles: articles.map(toArticleCard), page, totalArticles, totalPages};
 });
 
 export const getNewsArticle = cache(async (slug: string): Promise<CmsNewsArticle | null> => {
