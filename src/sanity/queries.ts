@@ -24,6 +24,29 @@ const projectCardFields = /* groq */ `
   "imageAlt": coalesce(photos[0].alt, title)
 `;
 
+const tenderFields = /* groq */ `
+  _id,
+  title,
+  referenceNumber,
+  status,
+  publishedAt,
+  closingDate,
+  summary,
+  contactEmail,
+  "documents": documents[]->{
+    _id,
+    title,
+    "url": coalesce(file.asset->url, externalUrl)
+  },
+  description[] {
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{url, metadata { dimensions { width, height } }}
+    }
+  }
+`;
+
 export const latestNewsArticlesQuery = defineQuery(/* groq */ `
   *[_type == "article" && defined(slug.current)]
   | order(publishedAt desc)[0...4] {
@@ -57,6 +80,13 @@ export const newsArticleBySlugQuery = defineQuery(/* groq */ `
         }
       }
     }
+  }
+`);
+
+export const tendersQuery = defineQuery(/* groq */ `
+  *[_type == "tender"]
+  | order(publishedAt desc) {
+    ${tenderFields}
   }
 `);
 
