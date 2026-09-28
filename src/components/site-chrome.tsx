@@ -9,6 +9,9 @@ import { countries, publicNavigation } from "@/data/site";
 import type { SiteSettings } from "@/sanity/settings";
 
 const moreNavigation = [
+  { label: "Programmes", href: "/programmes" },
+  { label: "Infrastructure", href: "/infrastructure" },
+  { label: "Opportunities", href: "/opportunities" },
   { label: "Stakeholder Portal", href: "/portal" },
   { label: "Feedback", href: "/feedback" },
 ];
@@ -119,6 +122,8 @@ export function SiteFooter({ settings }: { settings?: SiteSettings | null }) {
             <li><Link href="/">Home</Link></li>
             <li><Link href="/about">About CCTTFA</Link></li>
             <li><Link href="/corridor">The Corridor</Link></li>
+            <li><Link href="/programmes">Programmes</Link></li>
+            <li><Link href="/infrastructure">Infrastructure</Link></li>
             <li><Link href="/projects">Projects & Masterplan</Link></li>
           </ul>
         </div>
@@ -126,6 +131,7 @@ export function SiteFooter({ settings }: { settings?: SiteSettings | null }) {
           <h2>Updates</h2>
           <ul>
             <li><Link href="/news">News & Events</Link></li>
+            <li><Link href="/opportunities">Opportunities</Link></li>
             <li><Link href="/tenders">Tenders & Procurement</Link></li>
             <li><Link href="/resources">Resources</Link></li>
           </ul>

@@ -47,6 +47,32 @@ const tenderFields = /* groq */ `
   }
 `;
 
+const contentPageCardFields = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  pageKind,
+  summary,
+  "bodyPreview": body[0...3]{
+    _type,
+    children[]{text}
+  }
+`;
+
+const contentPageFields = /* groq */ `
+  ${contentPageCardFields},
+  body[] {
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{
+        url,
+        metadata { dimensions { width, height } }
+      }
+    }
+  }
+`;
+
 export const latestNewsArticlesQuery = defineQuery(/* groq */ `
   *[_type == "article" && defined(slug.current)]
   | order(publishedAt desc)[0...4] {
@@ -87,6 +113,19 @@ export const tendersQuery = defineQuery(/* groq */ `
   *[_type == "tender"]
   | order(publishedAt desc) {
     ${tenderFields}
+  }
+`);
+
+export const contentPagesByKindQuery = defineQuery(/* groq */ `
+  *[_type == "contentPage" && pageKind == $pageKind && defined(slug.current)]
+  | order(title asc) {
+    ${contentPageCardFields}
+  }
+`);
+
+export const contentPageBySlugQuery = defineQuery(/* groq */ `
+  *[_type == "contentPage" && pageKind == $pageKind && slug.current == $slug][0] {
+    ${contentPageFields}
   }
 `);
 
