@@ -28,11 +28,11 @@ export type Project = {
 };
 
 export const publicNavigation = [
+  { label: "Home", href: "/" },
   { label: "About us", href: "/about" },
   { label: "The Corridor", href: "/corridor" },
   { label: "Projects", href: "/projects" },
   { label: "News", href: "/news" },
-  { label: "Tenders", href: "/tenders" },
   { label: "Resources", href: "/resources" },
 ];
 
