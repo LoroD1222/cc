@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import { Anchor, ArrowRight, Download, FileText, MapPin, Ship, TrainFront, Truck } from "lucide-react";
 import type { Article, Project } from "@/data/site";
@@ -36,14 +37,8 @@ export function ProjectCard({ project }: { project: Project }) {
   return <article className="project-card"><div className="card-image"><Image src={project.image} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" /><span className={`status status-${project.status.toLowerCase().replaceAll(" ", "-")}`}>{project.status}</span><span className="project-icon"><Icon aria-hidden size={22} /></span></div><div className="card-body"><h3>{project.title}</h3><p>{project.description}</p><dl className="project-meta"><div><dt>Countries</dt><dd>{project.countries}</dd></div><div><dt>Est. cost</dt><dd>{project.cost}</dd></div></dl><Link className="text-link" href={`/projects/${project.slug}`}>View project <ArrowRight aria-hidden size={16} /></Link></div></article>;
 }
 
-export function PerformancePanel({ four = false }: { four?: boolean }) {
-  const metrics = [
-    ["Dar Port Container Dwell", "4.2 Days", "↓ 12% improvement vs 2025"],
-    ["Mutukula Border Delay", "1.8 Hours", "↓ 25 min clearance reduction"],
-    ["Corridor Cargo Vol. (YTD)", "14.2M Tons", "↑ 8.5% YoY growth"],
-    ["Transit Train Avg. Speed", "62 km/h", "Optimal rail scheduling active"],
-  ];
-  return <section className="performance-panel"><p className="eyebrow">REAL-TIME REGIONAL PERFORMANCE</p><h2>Transport Observatory Dashboard</h2><p>Live transit statistics track cargo volume, transit time, efficiency and productivity indicators across the Central Corridor.</p><div className={`metric-grid ${four ? "four" : ""}`}>{metrics.slice(0, four ? 4 : 3).map(([label, value, trend]) => <article className="metric-card" key={label}><p>{label}</p><strong>{value}</strong><small>{trend}</small></article>)}</div></section>;
+export function PerformancePanel() {
+  return <section className="performance-panel observatory-panel"><div className="observatory-panel-heading"><p className="eyebrow">REAL-TIME REGIONAL PERFORMANCE</p><h2>Transport Observatory Dashboard</h2><p>Explore live Central Corridor performance information from the CCTTFA Transport Observatory.</p></div><iframe className="observatory-embed" src="https://ccttfa.kalen.co.tz/embed/observatory" title="Central Corridor Transport Observatory" width="100%" height="680" loading="lazy" /><Script src="https://ccttfa.kalen.co.tz/embed.js" strategy="lazyOnload" /></section>;
 }
 
 export function Field({ label, name, placeholder, type = "text", required = false }: { label: string; name: string; placeholder?: string; type?: string; required?: boolean }) {
