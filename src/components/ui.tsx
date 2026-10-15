@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
+import { ObservatoryEmbed } from "@/components/observatory-embed";
 import type { ReactNode } from "react";
 import { Anchor, ArrowRight, Download, FileText, MapPin, Ship, TrainFront, Truck } from "lucide-react";
 import type { Article, Project } from "@/data/site";
@@ -38,7 +38,7 @@ export function ProjectCard({ project }: { project: Project }) {
 }
 
 export function PerformancePanel() {
-  return <section className="performance-panel observatory-panel"><div className="observatory-panel-heading"><p className="eyebrow">REAL-TIME REGIONAL PERFORMANCE</p><h2>Transport Observatory Dashboard</h2><p>Explore live Central Corridor performance information from the CCTTFA Transport Observatory.</p></div><iframe className="observatory-embed" src="https://ccttfa.kalen.co.tz/embed/observatory" title="Central Corridor Transport Observatory" width="100%" height="680" loading="lazy" /><Script src="https://ccttfa.kalen.co.tz/embed.js" strategy="lazyOnload" /></section>;
+  return <section className="performance-panel observatory-panel"><div className="observatory-panel-heading"><p className="eyebrow">REAL-TIME REGIONAL PERFORMANCE</p><h2>Transport Observatory Dashboard</h2><p>Explore live Central Corridor performance information from the CCTTFA Transport Observatory.</p></div><ObservatoryEmbed /></section>;
 }
 
 export function Field({ label, name, placeholder, type = "text", required = false }: { label: string; name: string; placeholder?: string; type?: string; required?: boolean }) {
