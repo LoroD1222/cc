@@ -141,10 +141,6 @@ h3 { font-size: 1.25rem; }
 .performance-panel { padding: clamp(2rem, 4vw, 3rem); border-radius: var(--radius-lg); color: #fff; background: var(--deep); }
 .performance-panel h2 { margin-bottom: 0.5rem; }
 .performance-panel > p:not(.eyebrow) { color: rgb(255 255 255 / 65%); }
-.observatory-panel { overflow: hidden; }
-.observatory-panel-heading { margin-bottom: 1.5rem; }
-.observatory-panel-heading > p:not(.eyebrow) { margin-bottom: 0; color: rgb(255 255 255 / 65%); }
-.observatory-embed { display: block; width: 100%; max-width: 100%; border: 0; border-radius: 16px; background: #fff; }
 .metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
 .metric-grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .metric-card { padding: 1.25rem; border-radius: var(--radius); background: rgb(255 255 255 / 10%); }
