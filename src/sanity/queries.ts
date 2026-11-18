@@ -209,3 +209,17 @@ export const siteSettingsQuery = defineQuery(/* groq */ `
     socialLinks[]{platform, url}
   }
 `);
+
+export const secretariatStaffQuery = defineQuery(/* groq */ `
+  *[_type == "person" && secretariatStatus == "current"]
+  | order(coalesce(displayOrder, 9999) asc, fullName asc) {
+    _id,
+    fullName,
+    officialTitle,
+    department,
+    displayOrder,
+    "photo": photo.asset->url,
+    "reportsToId": reportsTo->_id,
+    "reportsToName": reportsTo->fullName
+  }
+`);
