@@ -18,9 +18,9 @@ const moreNavigation = [
 
 const fallbackSocialLinks = [
   { platform: "X", url: "https://x.com" },
-  { platform: "Facebook", url: "https://web.facebook.com/ccttfa/?locale2=en_GB&_rdc=1&_rdr" },
+  { platform: "Facebook", url: "https://www.facebook.com/ccttfaorg" },
   { platform: "YouTube", url: "https://www.youtube.com/channel/UCFGND1xlZbPl2Uf0fTYLO_A" },
-  { platform: "LinkedIn", url: "https://www.linkedin.com/company/central-corridor-transit-transport-facilitation-agency/" },
+  { platform: "LinkedIn", url: "https://www.linkedin.com/in/central-corridor-71026a435" },
 ];
 
 function socialMark(platform: string) {
